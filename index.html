@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>商品价格指数异常检测系统</title>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- <script src="lib\d3.v3.min.js"></script> -->
+    <!-- <script src="lib\d3.v4.min.js"></script> -->
+    <script type='text/javascript' src="lib\d3.v4.min.js"></script>
+    <!-- <script type='text/javascript' src="https://cdn.jsdelivr.net/planck/0.1/planck.js"></script> -->
+    <script type='text/javascript' src="build\d3-bubbletreemap.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css\daterangepicker.css" /> -->
+    <script src="lib\jquery-1.11.0.min.js"></script>
+    <script src="lib\bootstrap.min.js"></script>
+    <!-- <script src="lib\moment.js"></script> -->
+    
+    <!-- <script src="lib\daterangepicker.js"></script> -->
+    <!-- <script src="lib/d3.parcoords.js"></script> -->
+    <script src="lib\sylvester.js"></script>
+    <!-- <script src="lib\jquery-2.1.4.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="css\demo.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="css\awesome.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="css\zTreeStyle.css" type="text/css"> -->
+    <script type="text/javascript" src="lib\echarts.min.js"></script>
+    <!-- <script type="text/javascript" src="lib\mindmup-editabletable.js"></script>
+    <script type="text/javascript" src="lib\numeric-input-example.js"></script> -->
+    <link rel="stylesheet" href="css\index.css" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <link rel="stylesheet" href="css\jquery-ui.theme.min.css">
+    <!-- <link rel="stylesheet" href="css\d3.parcoords.css"> -->
+    <link href="css\tabulator.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="ztreecss\demo.css" type="text/css"> -->
+    <link rel="stylesheet" href="ztreecss\zTreeStyle\zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="ztreejs\jquery.ztree.core.min.js"></script>
+    <!-- <script type="text/javascript" src="lib\jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="lib\tabulator.min.js"></script>
+    <!-- <script src="https://fastcdn.org/Underscore.js/1.8.3/underscore-min.js"></script> -->
+    <!-- <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script> -->
+    <script src="lib/d3.layout.cloud.js"></script>
+    <script src="JackWeiSlider-master\js\jackwei.slider.js"></script>
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+    <script src="lib\tf.min.js"> </script>
+    <script type='text/javascript' src="lib/bootstrap-slider.js"></script>
+    <script src="lib/d3-heatmap2.js"></script>
+    <script language="javascript" type="text/javascript" src="lib\d3-rebind.js"></script>
+<script language="javascript" type="text/javascript" src="lib\d3-polygon-clip.js"></script>
+<script language="javascript" type="text/javascript" src="lib\ConvexHull.js"></script>
+<script language="javascript" type="text/javascript" src="lib\PowerDiagram.js"></script>
+<script language="javascript" type="text/javascript" src="lib\VoronoiTreemap.js"></script>
+<script language="javascript" type="text/javascript" src="lib\VoronoiTreemapD3.js"></script>
+<script language="javascript" type="text/javascript" src="lib\colorlegend.js"></script>
+<script language="javascript" type="text/javascript" src="lib\radarchart.js"></script>
+
+<!-- <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script> -->
+<!-- <script language="javascript" type="text/javascript" src="lib\honeySwitch.js"></script> -->
+<!-- <link rel="stylesheet" href="css\honeySwitch.css" type="text/css"> -->
+    <!-- <link href='css/d3-heatmap2.css' rel='stylesheet' type='text/css'> -->
+
+    <!-- <script src="lib\jackwei.slider.js"></script> -->
+    <!--<script src="https://bl.ocks.org/syntagmatic/raw/3341641/render-queue.js"></script>-->
+
+
+</head>
+
+
+<body>
+    <div id='left'>
+        <div id='left1'>
+            <div id="name">
+                <div class="text">
+                    <p>Data Overview</p>
+                </div>
+            </div>
+            <div id='left1body'>
+                <p id='daa' class="dv"><span id='tit11'></span><span id='da1'></span></p>
+                <p id='daa' class="dv"><span id='tit12'></span><span id='da2'></span></p>
+                <p id='daa' class="dv"><span id='tit13'></span><span id='da3'></span></p>
+                <p id='daa' class="dv"><span id='tit14'></span><span id='da4'></span></p>
+                <button id='upload'>Load Data</button>
+            </div>
+        </div>
+        <div id="left2">
+            <div id="name">
+                <div class="text">
+                    <p style="display: inline-block;">Control Panel</p>
+                    <button type="button" id="ok" class="btn btn-default" style="font-size: 12px;margin:0px 0px 0px 110px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      </button>
+                </div>
+            </div>
+            <div id='left2body'>
+                <p id='daa1' class="dv"><span id='tit23'>Date:</span>
+                    <div class="dropdown">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="yy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 0px 5px;">
+                          2019
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a  id="yyy">2018</a></li>
+                          <li><a  id="yyy">2019</a></li>
+                        </ul>
+                      </div>
+                      <div class="dropdown">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="mm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 0px 5px;">
+                          Jan
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a  id="mmm">Dec</a></li><li><a  id="mmm">Jan</a></li><li><a  id="mmm">Feb</a></li><li><a  id="mmm">Mar</a></li>
+                          <li><a  id="mmm">Apr</a></li><li><a  id="mmm">May</a></li><li><a  id="mmm">Jun</a></li><li><a  id="mmm">Jul</a></li>
+                          <li><a  id="mmm">Aug</a></li><li><a  id="mmm">Sep</a></li><li><a  id="mmm">Oct</a></li><li><a  id="mmm">Nov</a></li>
+                        </ul>
+                      </div>
+                      <div class="dropdown">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 0px 5px;">
+                          18
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a  id="ddd">01</a></li><li><a  id="ddd">02</a></li><li><a  id="ddd">03</a></li><li><a  id="ddd">04</a></li><li><a  id="ddd">05</a></li>
+                          <li><a  id="ddd">06</a></li><li><a  id="ddd">07</a></li><li><a  id="ddd">08</a></li><li><a  id="ddd">09</a></li><li><a  id="ddd">10</a></li>
+                          <li><a  id="ddd">11</a></li><li><a  id="ddd">12</a></li><li><a  id="ddd">13</a></li><li><a  id="ddd">14</a></li><li><a  id="ddd">15</a></li>
+                          <li><a  id="ddd">16</a></li><li><a  id="ddd">17</a></li><li><a  id="ddd">18</a></li><li><a  id="ddd">19</a></li><li><a  id="ddd">20</a></li>
+                          <li><a  id="ddd">21</a></li><li><a  id="ddd">22</a></li><li><a  id="ddd">23</a></li><li><a  id="ddd">24</a></li><li><a  id="ddd">25</a></li>
+                          <li><a  id="ddd">26</a></li><li><a  id="ddd">27</a></li><li><a  id="ddd">28</a></li><li><a  id="ddd">29</a></li><li><a  id="ddd">30</a></li>
+                        </li><li><a  id="ddd">31</a></li>
+                        </ul>
+                      </div>
+                </p>
+                     
+                        <!-- <p id='daa' class="dv"><span id='tit22'>Index:</span>
+                        <div class="dropdown">
+                            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 0px 5px;">
+                              Fixed Base
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                              <li><a >Fixed Base</a></li>
+                              <li><a >Chain</a></li>
+                            </ul>
+                          </div>
+                          <div class="dropdown">
+                            <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 0px 5px;">
+                              Day
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                              <li><a >Day</a></li>
+                              <li><a >Week</a></li>
+                              <li><a >Month</a></li>
+                              <li><a >Year</a></li>
+                            </ul>
+                          </div>
+                        </p> -->
+                        <p id='daa1' class="dv"><span id='tit24'>MAE:</span>
+                             <input type="text" class="span2" data-slider-value="95" data-slider-id="RC" id="ex8"
+                    data-slider-tooltip="hide" data-slider-handle="round" />
+                            <input id="mae" class="form-control"><span style="color:#778899">%</span>
+                            </p>
+                        <p id='daa1' class="dv"><span id='tit21'>Anomaly Display:</span>
+                            <div class="btn-group"  id="IT3">
+                                <button type="button" class="btn btn-default" id="on" style="font-size: 12px;padding:0px 5px;outline: none;">On</button>
+                                <button type="button" class="btn btn-default active" id="off" style="font-size: 12px;padding:0px 5px;outline: none;">Off</button>
+                              </div>
+                            </p>
+            </div>
+        </div>
+        <div id="left3">
+            <div id="name">
+                <div class="text">
+                    <p>Hierarchy View</p>
+                </div>
+            </div>
+            <div id='left3body'>
+                <!-- <p><span id='cn'>Current Product:</span></p> -->
+                
+            </div>
+        </div>
+    </div>
+    <div id='right'>
+        <div id='right1'>
+            <div id='right11'>
+                <div id="name">
+                    <div class="text">
+                        <p style="display: inline-block;">Index View</p>
+                        <!-- <button type="button" id="undo" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 705px;padding:0px 0px 0px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="redo" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                          </button> -->
+                          <button type="button" id="sort" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 775px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="init" class="btn btn-default" style="font-size: 12px;margin:0px 0px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                          </button>
+                          <!-- <button type="button" id="bar" class="btn btn-default" style="font-size: 14px;margin:0px 20px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: #eee;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="line" class="btn btn-default" style="font-size: 14px;margin:0px 0px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: #eee;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                          </button> -->
+                    </div>
+                    <div id='bb'>
+                        <div id="bg">
+                            <ul id="mn">
+                                <li id="mns">select</li>
+                                <li id="mnd">back</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id='right11head'>
+                    <!-- <span id='fbi'>Fixed Base Index: </span>
+                    <input class='ra' id="IT" type="radio" name="IT" value='df' checked>Day
+                    <input class='ra' id="IT" type="radio" name="IT" value='wf' >Week
+                    <input class='ra' id="IT" type="radio" name="IT" value='mf' >Month
+                    <input class='ra' id="IT" type="radio" name="IT" value='yf' >Year
+                    <span id='ci'>Chain Index: </span>
+                    <input class='ra' id="IT" type="radio" name="IT" value='dd' >Day
+                    <input class='ra' id="IT" type="radio" name="IT" value='ww' >Week
+                    <input class='ra' id="IT" type="radio" name="IT" value='mm' >Month
+                    <input class='ra' id="IT" type="radio" name="IT" value='yy' >Year -->
+                </div>    
+                <div id='right11body'>
+                    
+                </div>
+                
+            </div>
+        
+        <div id='right12'>
+            <div id="name">
+                <div class="text">
+                    <p style="display: inline-block;">Optimization View</p>
+                        <button type="button" id="app" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 60px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="can" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="show" class="btn btn-default" style="font-size: 12px;margin:0px 20px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                          </button>
+                          <button type="button" id="cg" class="btn btn-default" style="font-size: 12px;margin:0px 0px 0px 0px;padding:0px 0px 2px 0px;outline: none;display: inline-block;background-color: transparent;border-width: 0px ;">
+                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+                          </button>
+                </div>
+            </div>
+            <div id='right12head'>
+                
+            </div>
+            <div id='right12body'>
+                
+            </div>
+        </div>
+    </div>
+        <div id="right2">
+            <div id='right21'>
+                <div id="name">
+                    <div class="text">
+                        <p>Anomaly View</p>
+                    </div>
+                </div>
+                <div id='right21head'>
+                    <!-- <span id='abd'>Abnormal Detection Mode: </span>
+                    <input class='ra' id="ABD" type="radio" name="ABD" value='sy' checked>System
+                    <input class='ra' id="ABD" type="radio" name="ABD" value='an' >Analyzer
+                    <span id='ct'>Current threshold:</span>
+                <input type="text" class="span2" data-slider-value="0" data-slider-id="RB" id="ex7"
+                    data-slider-tooltip="hide" data-slider-handle="round" /> -->
+                </div>
+                <div id='right21body'>
+                    </div>
+                
+            </div>
+            <div id='right22'>
+                <div id="name">
+                    <div class="text">
+                      <p style="display: inline-block;">Exploration View</p>
+                    </div>
+                </div>
+                <div id='right22body'>
+                    
+                    </div>
+                    <!-- <button id='change'></button>
+                <span id='ch'>Change</span>
+                <span id='ss'>Current Mode:</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="js\globe.js"></script>
+<script type="text/javascript" src="js\mmain.js"></script>
+<script type="text/javascript" src="js\stackchart.js"></script>
+<script type="text/javascript" src="js\tree.js"></script>
+<!-- <script type="text/javascript" src="js\table.js"></script> -->
+<script type="text/javascript" src="js\box.js"></script>
+
+
+<!-- <script type="text/javascript" src="js\pie.js"></script> -->
+<!-- <script type="text/javascript" src="js\bubblemap.js"></script> -->
+<script type="text/javascript" src="js\pro.js"></script>
+<script type="text/javascript" src="js\prot.js"></script>
+<!-- <script type="text/javascript" src="js\pack.js"></script> -->
+<script type="text/javascript" src="js\tensor.js"></script>
+<script type="text/javascript" src="js\judge.js"></script>
+<script type="text/javascript" src="js\judge1.js"></script>
+<script type="text/javascript" src="js\heatmap.js"></script>
+<script type="text/javascript" src="js\voronoi.js"></script>
+<script type="text/javascript" src="js\corr.js"></script>
+<!-- <script type="text/javascript" src="js\radar.js"></script> -->
+<script type="text/javascript" src="js\lollipop.js"></script>
+<script type="text/javascript" src="js\par.js"></script>
+<!-- <script type="text/javascript" src="js\parallel.js"></script> -->
+
+<!-- <script type="text/javascript" src="js\slider.js"></script> -->
+
+<!-- <script type="text/javascript" src="js\propro.js"></script> -->
+
+</html>
